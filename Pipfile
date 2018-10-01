@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+"psycopg2-binary" = "*"
+django-registration = "*"
+django-sass-processor = "*"
+libsass = "*"
+django-compressor = "*"
+gunicorn = "*"
+
+[dev-packages]
+factory-boy = "*"
+
+[requires]
+python_version = "3.7"
