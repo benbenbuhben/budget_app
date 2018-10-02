@@ -13,6 +13,7 @@ class BudgetListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['transactions'] = Transaction.objects.filter(
             budget__user__username=self.request.user.username)
+        print('change')
         return context
 
     def get_queryset(self):
