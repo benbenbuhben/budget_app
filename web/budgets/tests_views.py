@@ -48,7 +48,7 @@ class TestBudgetViews(TestCase):
         transaction = TransactionFactory(budget=budget)
         res = self.c.get('/board/budget')
 
-        self.assertIn(transaction.title.encode(), res.content)
+        self.assertIn(transaction.description.encode(), res.content)
 
 
 class TestTransactionViews(TestCase):
