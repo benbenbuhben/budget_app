@@ -26,7 +26,6 @@ class Budget(models.Model):
 
 class Transaction(models.Model):
     budget = models.ForeignKey(Budget, on_delete=models.CASCADE, related_name='transactions')
-    title = models.CharField(max_length=180, default='Untitled')
     description = models.TextField(blank=True, null=True)
     amount = models.FloatField()
     date_uploaded = models.DateField(auto_now_add=True)
@@ -44,10 +43,10 @@ class Transaction(models.Model):
     )
 
     def __repr__(self):
-        return '<Transaction: {} | {}>'.format(self.title, self.type)
+        return '<Transaction: {} | {}>'.format(self.description, self.type)
 
     def __str__(self):
-        return '{} | {}'.format(self.title, self.type)
+        return '{} | {}'.format(self.description, self.type)
 
 
 # @receiver(models.signals.post_save, sender=Card)
