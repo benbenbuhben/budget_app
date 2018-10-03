@@ -2,14 +2,18 @@
 
 {% block content %}
 <div class="budget_list">
+<p><a href="{% url "budget_create_form"%}">+ Add Budget Category</a></p>
 {% for budget in budgets %}
 <div class="status_{{ budget }}">
   <h2>{{ budget }}</h2>
+  <div class="transactions">
+      <p><a href="{% url "transaction_create_form"%}">+ Add Transaction</a></p>
   {% for transaction in transactions %}
     {% if transaction.budget == budget %}
     <p><a href="{% url "transaction_detail" id=transaction.id %}">{{ transaction.description }}</a></p>
     {% endif %}
   {% endfor %}
+</div>
 </div>
 {% endfor %}
 </div>

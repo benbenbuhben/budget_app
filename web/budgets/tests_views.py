@@ -54,3 +54,40 @@ class TestBudgetViews(TestCase):
 class TestTransactionViews(TestCase):
     pass
 
+
+class TestBudgetCreateViews(TestCase):
+    """."""
+
+    def setUp(self):
+        self.user = UserFactory()
+        self.user.set_password('super_secret')
+        self.user.save()
+        self.c = Client()
+
+    def test_new_budget_view(self):
+        self.c.login(
+            username=self.user.username,
+            password='super_secret'
+        )
+
+        res = self.c.get('/board/budget/new')
+
+        self.assertEqual(res.status_code, 200)
+        self.assertIn(b'input type="submit"', res.content)
+        self.assertIn(b'name="name"', res.content)
+        self.assertIn(b'name="description"', res.content)
+
+    def test_create_view_adds_new_budget(self):
+        self.c.login(
+            username=self.user.username,
+            password='super_secret'
+        )
+
+        form_data = {
+            'name': ' Name thing',
+            'total_budget': 1000
+        }
+
+        res = self.c.post('/board/budget/add', form_data, follow=True)
+
+        self.assertIn(b'Name thing', res.content)
