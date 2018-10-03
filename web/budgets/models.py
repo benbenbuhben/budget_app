@@ -5,12 +5,23 @@ from django.db import models
 
 
 class Budget(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='budgets')
-    name = models.CharField(max_length=180, default='Untitled')
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='budgets'
+    )
+    name = models.CharField(
+        max_length=180,
+        default='Untitled'
+    )
     total_budget = models.FloatField()
 
-    date_uploaded = models.DateField(auto_now_add=True)
-    date_modified = models.DateField(auto_now=True)
+    date_uploaded = models.DateField(
+        auto_now_add=True
+    )
+    date_modified = models.DateField(
+        auto_now=True
+    )
 
     def __repr__(self):
         return '<Budget: {}>'.format(self.name)
@@ -25,12 +36,26 @@ class Budget(models.Model):
 
 
 class Transaction(models.Model):
-    budget = models.ForeignKey(Budget, on_delete=models.CASCADE, related_name='transactions')
-    description = models.TextField(blank=True, null=True)
+    budget = models.ForeignKey(
+        Budget,
+        on_delete=models.CASCADE,
+        related_name='transactions'
+    )
+    description = models.TextField(
+        blank=True,
+        null=True
+    )
     amount = models.FloatField()
-    date_uploaded = models.DateField(auto_now_add=True)
-    date_modified = models.DateField(auto_now=True)
-    date_completed = models.DateField(blank=True, null=True)
+    date_uploaded = models.DateField(
+        auto_now_add=True
+    )
+    date_modified = models.DateField(
+        auto_now=True
+    )
+    date_completed = models.DateField(
+        blank=True,
+        null=True
+    )
 
     STATES = (
         ('WITHDRAWAL', 'Withdrawal'),
