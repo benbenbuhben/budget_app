@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django_registration',
     'budget_tool',
     'budgets',
+    'budget_api',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

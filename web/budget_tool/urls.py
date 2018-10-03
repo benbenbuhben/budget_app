@@ -23,5 +23,6 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('board/', include('budgets.urls'))
+    path('board/', include('budgets.urls')),
+    path('api-auth/', include('budget_api.urls')),
 ]
